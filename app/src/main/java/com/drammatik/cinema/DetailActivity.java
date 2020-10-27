@@ -40,12 +40,12 @@ public class DetailActivity extends AppCompatActivity {
                 break;
             case "Однажды в Голливуде":
                 title.setText(getText(R.string.once_upon_title).toString());
-                picture.setImageResource(R.drawable.once_upon_a_time_in_hollywood);
+                picture.setImageResource(R.drawable.once_upon_a_time_in_hollywood_photo);
                 description.setText(getText(R.string.once_description).toString());
                 break;
             case "Криминальное чтиво":
                 title.setText(getText(R.string.pulp_title).toString());
-                picture.setImageResource(R.drawable.pulp_fiction);
+                picture.setImageResource(R.drawable.pulp_fiction_photo);
                 description.setText(getText(R.string.pulp_description).toString());
                 break;
         }

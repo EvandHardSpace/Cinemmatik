@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTitleTitanicTextView = findViewById(R.id.title_titanic);
-        mTitleOnceUponATimeTextView = findViewById(R.id.title_once);
-        mTitlePulpFictionTextView = findViewById(R.id.title_pulp);
+        mTitleTitanicTextView = findViewById(R.id.titanic_title_text_view);
+        mTitleOnceUponATimeTextView = findViewById(R.id.once_upon_a_time_title_text_view);
+        mTitlePulpFictionTextView = findViewById(R.id.pulp_fiction_title_text_view);
 
         if (savedInstanceState != null) {
             int color = savedInstanceState.getInt(TITANIC_TITLE_COLOR);
