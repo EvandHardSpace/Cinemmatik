@@ -57,6 +57,8 @@
                     android:layout_margin="@dimen/default_margin"
                     android:onClick="detailTitanicButton"
                     android:text="@string/detail_button_text"
+                    android:background="@drawable/button_shape"
+                    android:textAppearance="@style/DetailButton"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/titanic_image_view" />
@@ -110,6 +112,8 @@
                     android:layout_margin="@dimen/default_margin"
                     android:onClick="detailOnceUponATimeInHollywoodButton"
                     android:text="@string/detail_button_text"
+                    android:background="@drawable/button_shape"
+                    android:textAppearance="@style/DetailButton"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/once_upon_a_time_in_hollywood_image_view" />
@@ -166,6 +170,8 @@
                     android:layout_marginBottom="16dp"
                     android:onClick="detailPulpFictionButton"
                     android:text="@string/detail_button_text"
+                    android:background="@drawable/button_shape"
+                    android:textAppearance="@style/DetailButton"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/pulp_fiction_image_view" />

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void detailTitanicButton(View view) {
         titleName = getText(R.string.titanic_title).toString();
-        mTitleTitanicTextView.setTextColor(Color.BLUE);
+        mTitleTitanicTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(TITLE_KEY, titleName);
         startActivityForResult(intent, REQUEST_CODE);
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void detailOnceUponATimeInHollywoodButton(View view) {
         titleName = getText(R.string.once_upon_a_time_title).toString();
-        mTitleOnceUponATimeTextView.setTextColor(Color.BLUE);
+        mTitleOnceUponATimeTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(TITLE_KEY, titleName);
         startActivityForResult(intent, REQUEST_CODE);
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void detailPulpFictionButton(View view) {
         titleName = getText(R.string.pulp_fiction_title).toString();
-        mTitlePulpFictionTextView.setTextColor(Color.BLUE);
+        mTitlePulpFictionTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(TITLE_KEY, titleName);
         startActivityForResult(intent, REQUEST_CODE);
