@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -47,11 +49,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
     public void detailTitanicButton(View view) {
         titleName = getText(R.string.titanic_title).toString();
         mTitleTitanicTextView.setTextColor(Color.BLUE);
@@ -61,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void detailOnceUponATimeInHollywoodButton(View view) {
-        titleName = getText(R.string.once_upon_title).toString();
+        titleName = getText(R.string.once_upon_a_time_title).toString();
         mTitleOnceUponATimeTextView.setTextColor(Color.BLUE);
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(TITLE_KEY, titleName);
@@ -69,14 +66,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void detailPulpFictionButton(View view) {
-        titleName = getText(R.string.pulp_title).toString();
+        titleName = getText(R.string.pulp_fiction_title).toString();
         mTitlePulpFictionTextView.setTextColor(Color.BLUE);
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(TITLE_KEY, titleName);
         startActivityForResult(intent, REQUEST_CODE);
     }
 
-    public void shareButton(View view) {
+    public void shareButton() {
         ShareCompat.IntentBuilder
                 .from(this)
                 .setType("text/plain")
@@ -107,5 +104,19 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt(TITANIC_TITLE_COLOR, mTitleTitanicTextView.getCurrentTextColor());
         outState.putInt(ONCE_UPON_A_TIME_IN_HOLLYWOOD_COLOR, mTitleOnceUponATimeTextView.getCurrentTextColor());
         outState.putInt(PULP_FICTION_TITLE_COLOR, mTitlePulpFictionTextView.getCurrentTextColor());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.share_option) {
+            shareButton();
+        }
+        return true;
     }
 }

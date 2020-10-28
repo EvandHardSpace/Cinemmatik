@@ -14,39 +14,39 @@ import static com.drammatik.cinema.MainActivity.TITLE_KEY;
 public class DetailActivity extends AppCompatActivity {
     public static final String COMMENT_KEY = "comment";
     public static final String CHECKBOX_KEY = "checkbox";
-    private CheckBox mLike;
-    private EditText mComment;
+    private CheckBox mLikeCheckBox;
+    private EditText mCommentEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        TextView title = findViewById(R.id.title_detail_text_view);
-        TextView description = findViewById(R.id.article_detail_text_view);
-        ImageView picture = findViewById(R.id.film_photo_image_view);
+        TextView titleTextView = findViewById(R.id.title_detail_text_view);
+        TextView descriptionTextView = findViewById(R.id.article_detail_text_view);
+        ImageView pictureImageView = findViewById(R.id.film_photo_image_view);
 
         Intent intent = getIntent();
         String titleName = intent.getStringExtra(TITLE_KEY);
-        mLike = findViewById(R.id.like_detail_checkbox);
-        mComment = findViewById(R.id.comment_detail_edit_text);
+        mLikeCheckBox = findViewById(R.id.like_detail_checkbox);
+        mCommentEditText = findViewById(R.id.comment_detail_edit_text);
 
         assert titleName != null;
         switch (titleName) {
             case "Титаник":
-                title.setText(getText(R.string.titanic_title).toString());
-                picture.setImageResource(R.drawable.titanic);
-                description.setText(getText(R.string.titanic_description).toString());
+                titleTextView.setText(getText(R.string.titanic_title).toString());
+                pictureImageView.setImageResource(R.drawable.titanic);
+                descriptionTextView.setText(getText(R.string.titanic_description).toString());
                 break;
             case "Однажды в Голливуде":
-                title.setText(getText(R.string.once_upon_title).toString());
-                picture.setImageResource(R.drawable.once_upon_a_time_in_hollywood_photo);
-                description.setText(getText(R.string.once_description).toString());
+                titleTextView.setText(getText(R.string.once_upon_a_time_title).toString());
+                pictureImageView.setImageResource(R.drawable.once_upon_a_time_in_hollywood_photo);
+                descriptionTextView.setText(getText(R.string.once_upon_a_time_description).toString());
                 break;
             case "Криминальное чтиво":
-                title.setText(getText(R.string.pulp_title).toString());
-                picture.setImageResource(R.drawable.pulp_fiction_photo);
-                description.setText(getText(R.string.pulp_description).toString());
+                titleTextView.setText(getText(R.string.pulp_fiction_title).toString());
+                pictureImageView.setImageResource(R.drawable.pulp_fiction_photo);
+                descriptionTextView.setText(getText(R.string.pulp__fiction_description).toString());
                 break;
         }
     }
@@ -54,8 +54,8 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(CHECKBOX_KEY, mLike.isChecked());
-        intent.putExtra(COMMENT_KEY, mComment.getText().toString());
+        intent.putExtra(CHECKBOX_KEY, mLikeCheckBox.isChecked());
+        intent.putExtra(COMMENT_KEY, mCommentEditText.getText().toString());
         setResult(RESULT_OK, intent);
         super.onBackPressed();
     }

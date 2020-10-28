@@ -1,139 +1,125 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/all_films_scrollView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
 
-    <Button
-        android:id="@+id/share_button"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/default_margin"
-        android:onClick="shareButton"
-        android:text="@string/share_button" />
+        tools:context=".MainActivity">
 
-    <ScrollView
-        android:id="@+id/all_films_scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/titanic_image_view"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:context=".MainActivity">
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/no_text"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/titanic" />
 
-            <ImageView
-                android:id="@+id/titanic_image_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_margin"
-                android:layout_marginTop="@dimen/small_margin"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/no_text"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/titanic" />
+        <ImageView
+            android:id="@+id/once_upon_a_time_in_hollywood_image_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/no_text"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_titanic_button"
+            app:srcCompat="@drawable/once_upon_a_time_in_hollywood_photo" />
 
-            <ImageView
-                android:id="@+id/once_upon_a_time_in_hollywood_image_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_margin"
-                android:layout_marginTop="@dimen/default_margin"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/no_text"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_titanic_button"
-                app:srcCompat="@drawable/once_upon_a_time_in_hollywood_photo" />
+        <ImageView
+            android:id="@+id/pulp_fiction_image_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/no_text"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/detail_once_upon_a_tome_in_hollywood_button"
+            app:srcCompat="@drawable/pulp_fiction_photo" />
 
-            <ImageView
-                android:id="@+id/pulp_fiction_image_view"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_margin"
-                android:layout_marginTop="@dimen/default_margin"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/no_text"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_once_upon_a_tome_in_hollywood_button"
-                app:srcCompat="@drawable/pulp_fiction_photo" />
+        <TextView
+            android:id="@+id/titanic_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:text="@string/titanic_title"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintBaseline_toBaselineOf="@+id/detail_titanic_button"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/titanic_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_margin"
-                android:text="@string/titanic_title"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/title_size"
-                app:layout_constraintBaseline_toBaselineOf="@+id/detail_titanic_button"
-                app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/once_upon_a_time_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:text="@string/once_upon_a_time_title"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintBaseline_toBaselineOf="@+id/detail_once_upon_a_tome_in_hollywood_button"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/once_upon_a_time_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_margin"
-                android:text="@string/once_upon_title"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/title_size"
-                app:layout_constraintBaseline_toBaselineOf="@+id/detail_once_upon_a_tome_in_hollywood_button"
-                app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/pulp_fiction_title_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginVertical="@dimen/default_margin"
+            android:text="@string/pulp_fiction_title"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/title_size"
+            app:layout_constraintBaseline_toBaselineOf="@+id/detail_pulp_fiction_button"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/pulp_fiction_title_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_margin"
-                android:layout_marginVertical="@dimen/default_margin"
-                android:text="@string/pulp_title"
-                android:textColor="@android:color/black"
-                android:textSize="@dimen/title_size"
-                app:layout_constraintBaseline_toBaselineOf="@+id/detail_pulp_fiction_button"
-                app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/detail_titanic_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:onClick="detailTitanicButton"
+            android:text="@string/detail_button_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titanic_image_view" />
 
-            <Button
-                android:id="@+id/detail_titanic_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_margin"
-                android:onClick="detailTitanicButton"
-                android:layout_marginTop="@dimen/default_margin"
-                android:text="@string/more_button_text"
-                app:layout_constraintTop_toBottomOf="@+id/titanic_image_view"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <Button
+            android:id="@+id/detail_once_upon_a_tome_in_hollywood_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
+            android:onClick="detailOnceUponATimeInHollywoodButton"
+            android:text="@string/detail_button_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/once_upon_a_time_in_hollywood_image_view" />
 
-            <Button
-                android:id="@+id/detail_once_upon_a_tome_in_hollywood_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_margin"
-                android:onClick="detailOnceUponATimeInHollywoodButton"
-                android:text="@string/more_button_text"
-                android:layout_marginTop="@dimen/default_margin"
-                app:layout_constraintTop_toBottomOf="@+id/once_upon_a_time_in_hollywood_image_view"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <Button
-                android:id="@+id/detail_pulp_fiction_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/default_margin"
-                android:layout_marginVertical="@dimen/default_margin"
-                android:layout_marginBottom="16dp"
-                android:onClick="detailPulpFictionButton"
-                android:text="@string/more_button_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pulp_fiction_image_view" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-</LinearLayout>
+        <Button
+            android:id="@+id/detail_pulp_fiction_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
+            android:layout_marginVertical="@dimen/default_margin"
+            android:layout_marginBottom="16dp"
+            android:onClick="detailPulpFictionButton"
+            android:text="@string/detail_button_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pulp_fiction_image_view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
