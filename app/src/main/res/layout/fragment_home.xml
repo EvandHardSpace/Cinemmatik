@@ -21,10 +21,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:id="@+id/film_list_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:context=".MainActivity">
+                android:orientation="vertical"
+                tools:context=".MainActivity"
+                android:background="@android:color/white">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/titanic_card_view"
@@ -32,9 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/small_margin"
                     app:cardCornerRadius="@dimen/default_card_corner_radius"
-                    app:cardElevation="@dimen/small_margin"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:cardElevation="@dimen/small_margin">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -86,9 +87,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/small_margin"
                     app:cardCornerRadius="@dimen/default_card_corner_radius"
-                    app:cardElevation="@dimen/small_margin"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/titanic_card_view">
+                    app:cardElevation="@dimen/small_margin">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -140,11 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/small_margin"
                     app:cardCornerRadius="@dimen/default_card_corner_radius"
-                    app:cardElevation="@dimen/small_margin"
-                    android:layout_marginBottom="70dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/once_upon_a_time_card_view">
+                    app:cardElevation="@dimen/small_margin">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -190,7 +185,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/pulp_fiction_image_view" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
         </ScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -199,12 +194,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/default_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_dialog_email"
             app:layout_anchor="@id/all_films_scrollView"
             app:layout_anchorGravity="bottom|end"
-            app:layout_behavior=".behavior.ScrollAwareFABBehavior"/>
+            app:layout_behavior=".behavior.ScrollAwareFABBehavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_add_24" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

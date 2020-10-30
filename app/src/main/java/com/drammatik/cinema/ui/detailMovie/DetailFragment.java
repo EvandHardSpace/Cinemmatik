@@ -3,6 +3,7 @@ package com.drammatik.cinema.ui.detailMovie;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -65,6 +66,9 @@ public class DetailFragment extends Fragment {
     public void onDestroy() {
         Log.d(TAG, "User liked the movie: " + mLikeCheckBox.isChecked());
         Log.d(TAG, "User post a comment: [" + mCommentEditText.getText() + "]");
+
+        // may be not best practice
+        getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         super.onDestroy();
     }
 }

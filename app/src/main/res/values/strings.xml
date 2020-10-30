@@ -38,4 +38,8 @@
     <string name="detail_button_text">Детали</string>
     <string name="like_checkbox_text">Мне нравится</string>
     <string name="comment_hint">Комментарий</string>
+    <string name="action_add_movie">Add movie</string>
+    <string name="add_title_hint">Введите название фильма</string>
+    <string name="add_description_hint">Введите описание фильма</string>
+    <string name="add_film_title">Добавить новый фильм:</string>
 </resources>

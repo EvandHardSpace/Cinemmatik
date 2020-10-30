@@ -3,8 +3,10 @@ package com.drammatik.cinema;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 
 import androidx.annotation.NonNull;
@@ -49,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.share_option) {
             shareButton();
+        } else if (item.getItemId() == R.id.action_add_movie) {
+            Toast.makeText(this, "Please, use FAB", Toast.LENGTH_SHORT)
+                    .show();
         }
         return super.onOptionsItemSelected(item);
     }
