@@ -1,76 +1,56 @@
 package com.drammatik.cinema;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ShareCompat;
-
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+
+import com.google.android.material.navigation.NavigationView;
+
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ShareCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-    private static final String TITANIC_TITLE_COLOR = "titanic";
-    private static final String ONCE_UPON_A_TIME_IN_HOLLYWOOD_COLOR = "once upon a time in Hollywood";
-    private static final String PULP_FICTION_TITLE_COLOR = "pulp fiction";
-    private static final int REQUEST_CODE = 42;
-
-    private String titleName;
-
-    private TextView mTitleTitanicTextView;
-    private TextView mTitleOnceUponATimeTextView;
-    private TextView mTitlePulpFictionTextView;
-
-    public final static String TITLE_KEY = "title key";
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        mTitleTitanicTextView = findViewById(R.id.titanic_title_text_view);
-        mTitleOnceUponATimeTextView = findViewById(R.id.once_upon_a_time_title_text_view);
-        mTitlePulpFictionTextView = findViewById(R.id.pulp_fiction_title_text_view);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_about)
+                .setDrawerLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
+    }
 
-        if (savedInstanceState != null) {
-            int color = savedInstanceState.getInt(TITANIC_TITLE_COLOR);
-            mTitleTitanicTextView.setTextColor(color);
-            color = savedInstanceState.getInt(ONCE_UPON_A_TIME_IN_HOLLYWOOD_COLOR);
-            mTitleOnceUponATimeTextView.setTextColor(color);
-            color = savedInstanceState.getInt(PULP_FICTION_TITLE_COLOR);
-            mTitlePulpFictionTextView.setTextColor(color);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.share_option) {
+            shareButton();
         }
-    }
-
-    public void detailTitanicButton(View view) {
-        titleName = getText(R.string.titanic_title).toString();
-        mTitleTitanicTextView.setTextColor(Color.BLUE);
-        Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(TITLE_KEY, titleName);
-        startActivityForResult(intent, REQUEST_CODE);
-    }
-
-    public void detailOnceUponATimeInHollywoodButton(View view) {
-        titleName = getText(R.string.once_upon_a_time_title).toString();
-        mTitleOnceUponATimeTextView.setTextColor(Color.BLUE);
-        Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(TITLE_KEY, titleName);
-        startActivityForResult(intent, REQUEST_CODE);
-    }
-
-    public void detailPulpFictionButton(View view) {
-        titleName = getText(R.string.pulp_fiction_title).toString();
-        mTitlePulpFictionTextView.setTextColor(Color.BLUE);
-        Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(TITLE_KEY, titleName);
-        startActivityForResult(intent, REQUEST_CODE);
+        return super.onOptionsItemSelected(item);
     }
 
     public void shareButton() {
@@ -83,40 +63,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                assert data != null;
-                boolean isLiked = data.getBooleanExtra(DetailActivity.CHECKBOX_KEY, false);
-                String comment = data.getStringExtra(DetailActivity.COMMENT_KEY);
-                Log.d(TAG, "User liked the movie: " + isLiked);
-                Log.d(TAG, "User post a comment: [ " + comment + " ]");
-
-            }
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt(TITANIC_TITLE_COLOR, mTitleTitanicTextView.getCurrentTextColor());
-        outState.putInt(ONCE_UPON_A_TIME_IN_HOLLYWOOD_COLOR, mTitleOnceUponATimeTextView.getCurrentTextColor());
-        outState.putInt(PULP_FICTION_TITLE_COLOR, mTitlePulpFictionTextView.getCurrentTextColor());
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.share_option) {
-            shareButton();
-        }
-        return true;
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
     }
 }

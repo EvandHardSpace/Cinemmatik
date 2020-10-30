@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="@dimen/default_margin"
+    android:background="@android:color/white"
     android:orientation="vertical">
 
     <ScrollView
@@ -20,6 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/default_margin"
             android:orientation="vertical">
 
             <ImageView
@@ -54,17 +55,31 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/like_checkbox_text"
-        app:layout_constraintBottom_toTopOf="@id/comment_detail_edit_text"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        app:layout_constraintBottom_toTopOf="@id/comment_detail_text_input_layout"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/comment_detail_edit_text"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/comment_detail_text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_margin"
-        android:autofillHints="comment"
-        android:hint="@string/comment_hint"
-        android:inputType="text"
+        android:layout_marginVertical="@dimen/small_margin"
+        app:counterEnabled="true"
+        app:counterMaxLength="140"
+        app:counterOverflowTextAppearance="@style/CounterOverFlow"
+        app:counterTextAppearance="@style/CounterText"
+        android:layout_marginHorizontal="@dimen/default_margin"
+        app:hintTextAppearance="@style/HintText"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <EditText
+            android:id="@+id/comment_detail_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="comment"
+            android:backgroundTint="@color/colorPrimary"
+            android:hint="@string/comment_hint"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

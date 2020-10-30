@@ -1,35 +1,43 @@
-package com.drammatik.cinema;
+package com.drammatik.cinema.ui.detailMovie;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import static com.drammatik.cinema.MainActivity.TITLE_KEY;
+import com.drammatik.cinema.R;
 
-public class DetailActivity extends AppCompatActivity {
-    public static final String COMMENT_KEY = "comment";
-    public static final String CHECKBOX_KEY = "checkbox";
+import static com.drammatik.cinema.ui.home.HomeFragment.TITLE_KEY;
+
+public class DetailFragment extends Fragment {
+
+    private static final String TAG = "tag";
     private CheckBox mLikeCheckBox;
     private EditText mCommentEditText;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        TextView titleTextView = findViewById(R.id.title_detail_text_view);
-        TextView descriptionTextView = findViewById(R.id.article_detail_text_view);
-        ImageView pictureImageView = findViewById(R.id.film_photo_image_view);
+        View root = inflater.inflate(R.layout.activity_detail, container, false);
 
-        Intent intent = getIntent();
-        String titleName = intent.getStringExtra(TITLE_KEY);
-        mLikeCheckBox = findViewById(R.id.like_detail_checkbox);
-        mCommentEditText = findViewById(R.id.comment_detail_edit_text);
+        TextView titleTextView = root.findViewById(R.id.title_detail_text_view);
+        TextView descriptionTextView = root.findViewById(R.id.article_detail_text_view);
+        ImageView pictureImageView = root.findViewById(R.id.film_photo_image_view);
+
+        mLikeCheckBox = root.findViewById(R.id.like_detail_checkbox);
+        mCommentEditText = root.findViewById(R.id.comment_detail_edit_text);
+
+        assert getArguments() != null;
+        String titleName = getArguments().getString(TITLE_KEY);
 
         assert titleName != null;
         switch (titleName) {
@@ -49,14 +57,14 @@ public class DetailActivity extends AppCompatActivity {
                 descriptionTextView.setText(getText(R.string.pulp__fiction_description).toString());
                 break;
         }
+
+        return root;
     }
 
     @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(CHECKBOX_KEY, mLikeCheckBox.isChecked());
-        intent.putExtra(COMMENT_KEY, mCommentEditText.getText().toString());
-        setResult(RESULT_OK, intent);
-        super.onBackPressed();
+    public void onDestroy() {
+        Log.d(TAG, "User liked the movie: " + mLikeCheckBox.isChecked());
+        Log.d(TAG, "User post a comment: [" + mCommentEditText.getText() + "]");
+        super.onDestroy();
     }
 }
