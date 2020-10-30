@@ -6,8 +6,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ShareCompat;

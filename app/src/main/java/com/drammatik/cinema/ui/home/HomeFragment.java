@@ -1,10 +1,12 @@
 package com.drammatik.cinema.ui.home;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -67,10 +69,6 @@ public class HomeFragment extends Fragment {
         mTitleOnceUponATimeTextView = root.findViewById(R.id.once_upon_a_time_title_text_view);
         mTitlePulpFictionTextView = root.findViewById(R.id.pulp_fiction_title_text_view);
 
-        Button titanicDetailButton = root.findViewById(R.id.detail_titanic_button);
-        Button onceUponATimeDetailButton = root.findViewById(R.id.detail_once_upon_a_tome_in_hollywood_button);
-        Button pulpFictionDetailButton = root.findViewById(R.id.detail_pulp_fiction_button);
-
         if (savedInstanceState != null) {
             int color = savedInstanceState.getInt(TITANIC_TITLE_COLOR);
             mTitleTitanicTextView.setTextColor(color);
@@ -83,60 +81,50 @@ public class HomeFragment extends Fragment {
             movie = savedInstanceState.getStringArrayList(MOVIE_KEY);
         }
 
+        Button titanicDetailButton = root.findViewById(R.id.detail_titanic_button);
+        Button onceUponATimeDetailButton = root.findViewById(R.id.detail_once_upon_a_tome_in_hollywood_button);
+        Button pulpFictionDetailButton = root.findViewById(R.id.detail_pulp_fiction_button);
+
+        ImageView titanicDetailImageView = root.findViewById(R.id.titanic_image_view);
+        ImageView onceUponATimeDetailImageView = root.findViewById(R.id.once_upon_a_time_in_hollywood_image_view);
+        ImageView pulpFictionDetailImageView = root.findViewById(R.id.pulp_fiction_image_view);
+
+
         titanicDetailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                titleName = getText(R.string.titanic_title).toString();
-                mTitleTitanicTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
-                Bundle bundle = new Bundle();
-                bundle.putString(TITLE_KEY, titleName);
-                DetailFragment detailFrag = new DetailFragment();
-                detailFrag.setArguments(bundle);
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.fragment_open_enter, R.anim.fragment_close_exit)
-                        .replace(R.id.home_container, detailFrag, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
+                onClickDetail(mTitleTitanicTextView, R.string.titanic_title);
             }
         });
         onceUponATimeDetailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                titleName = getText(R.string.once_upon_a_time_title).toString();
-                mTitleOnceUponATimeTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
-
-                Bundle bundle = new Bundle();
-                bundle.putString(TITLE_KEY, titleName);
-
-                DetailFragment detailFrag = new DetailFragment();
-                detailFrag.setArguments(bundle);
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.fragment_open_enter, R.anim.fragment_close_exit)
-                        .replace(R.id.home_container, detailFrag, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
+                onClickDetail(mTitleOnceUponATimeTextView, R.string.once_upon_a_time_title);
             }
         });
         pulpFictionDetailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                titleName = getText(R.string.pulp_fiction_title).toString();
-                mTitlePulpFictionTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
-                Bundle bundle = new Bundle();
-                bundle.putString(TITLE_KEY, titleName);
-                DetailFragment detailFrag = new DetailFragment();
-                detailFrag.setArguments(bundle);
-                getActivity()
-                        .getSupportFragmentManager()
-                        .beginTransaction()
-                        .setCustomAnimations(R.anim.fragment_open_enter, R.anim.fragment_close_exit)
-                        .replace(R.id.home_container, detailFrag, "findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
+                onClickDetail(mTitlePulpFictionTextView, R.string.pulp_fiction_title);
+            }
+        });
+
+        titanicDetailImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickDetail(mTitleTitanicTextView, R.string.titanic_title);
+            }
+        });
+        onceUponATimeDetailImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickDetail(mTitleOnceUponATimeTextView, R.string.once_upon_a_time_title);
+            }
+        });
+        pulpFictionDetailImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickDetail(mTitlePulpFictionTextView, R.string.pulp_fiction_title);
             }
         });
 ///////
@@ -154,18 +142,18 @@ public class HomeFragment extends Fragment {
                     new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT);
 
-                TextView addTitleTextView = new TextView(getContext());
-                TextView addDescriptionTextView = new TextView(getContext());
+            TextView addTitleTextView = new TextView(getContext());
+            TextView addDescriptionTextView = new TextView(getContext());
 
-                addTitleTextView.setText(movie.get(0));
-                addDescriptionTextView.setText(movie.get(1));
+            addTitleTextView.setText(movie.get(0));
+            addDescriptionTextView.setText(movie.get(1));
 
 
-                addTitleTextView.setLayoutParams(layoutParams);
-                addDescriptionTextView.setLayoutParams(layoutParams);
+            addTitleTextView.setLayoutParams(layoutParams);
+            addDescriptionTextView.setLayoutParams(layoutParams);
 
-                mainLayout.addView(addTitleTextView);
-                mainLayout.addView(addDescriptionTextView);
+            mainLayout.addView(addTitleTextView);
+            mainLayout.addView(addDescriptionTextView);
         }
         ///////////
         return root;
@@ -182,4 +170,19 @@ public class HomeFragment extends Fragment {
         outState.putStringArrayList(MOVIE_KEY, movie);
     }
 
+    public void onClickDetail(TextView title, int getTextTitle) {
+        titleName = getText(getTextTitle).toString();
+        title.setTextColor(getResources().getColor(R.color.colorPrimary));
+        Bundle bundle = new Bundle();
+        bundle.putString(TITLE_KEY, titleName);
+        DetailFragment detailFrag = new DetailFragment();
+        detailFrag.setArguments(bundle);
+        getActivity()
+                .getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(R.anim.fragment_open_enter, R.anim.fragment_close_exit)
+                .replace(R.id.home_container, detailFrag, "findThisFragment")
+                .addToBackStack(null)
+                .commit();
+    }
 }
