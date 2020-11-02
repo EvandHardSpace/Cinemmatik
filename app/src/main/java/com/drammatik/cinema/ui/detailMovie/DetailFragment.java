@@ -1,7 +1,11 @@
 package com.drammatik.cinema.ui.detailMovie;
 
+import android.app.ActionBar;
+import android.app.Notification;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -29,6 +33,11 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.activity_detail, container, false);
+
+//        Toolbar toolbar = ((AppCompatActivity) getActivity()).findViewById(R.id.toolbar);
+//        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+//        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         TextView titleTextView = root.findViewById(R.id.title_detail_text_view);
         TextView descriptionTextView = root.findViewById(R.id.article_detail_text_view);

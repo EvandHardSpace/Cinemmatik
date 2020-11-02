@@ -1,6 +1,5 @@
 package com.drammatik.cinema.ui.home;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -181,7 +180,7 @@ public class HomeFragment extends Fragment {
                 .getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.fragment_open_enter, R.anim.fragment_close_exit)
-                .replace(R.id.home_container, detailFrag, "findThisFragment")
+                .replace(R.id.nav_host_fragment, detailFrag, "findThisFragment")
                 .addToBackStack(null)
                 .commit();
     }

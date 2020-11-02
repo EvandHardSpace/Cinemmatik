@@ -3,11 +3,14 @@ package com.drammatik.cinema;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.app.ShareCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -29,6 +32,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_about)
@@ -50,8 +58,11 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.share_option) {
             shareButton();
         } else if (item.getItemId() == R.id.action_add_movie) {
-            Toast.makeText(this, "Please, use FAB", Toast.LENGTH_SHORT)
-                    .show();
+            Snackbar snackbar = Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),
+                    "This feature will be available later :(", BaseTransientBottomBar.LENGTH_LONG);
+            View snackBarView = snackbar.getView();
+            snackBarView.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            snackbar.show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -67,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = Navigation.
+                findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
