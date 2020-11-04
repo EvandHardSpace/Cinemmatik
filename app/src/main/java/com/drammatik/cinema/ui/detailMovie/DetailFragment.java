@@ -24,7 +24,7 @@ import static com.drammatik.cinema.ui.home.HomeFragment.TITLE_KEY;
 
 public class DetailFragment extends Fragment {
 
-    private static final String TAG = "tag";
+    private static final String TAG = "Like and comment";
     private CheckBox mLikeCheckBox;
     private EditText mCommentEditText;
 
@@ -37,7 +37,6 @@ public class DetailFragment extends Fragment {
 //        Toolbar toolbar = ((AppCompatActivity) getActivity()).findViewById(R.id.toolbar);
 //        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
 //        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         TextView titleTextView = root.findViewById(R.id.title_detail_text_view);
         TextView descriptionTextView = root.findViewById(R.id.article_detail_text_view);
@@ -77,7 +76,7 @@ public class DetailFragment extends Fragment {
         Log.d(TAG, "User post a comment: [" + mCommentEditText.getText() + "]");
 
         // may be not best practice
-        getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//        getActivity().getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         super.onDestroy();
     }
 }

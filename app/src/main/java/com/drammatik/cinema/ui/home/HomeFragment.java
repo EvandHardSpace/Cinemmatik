@@ -1,6 +1,10 @@
 package com.drammatik.cinema.ui.home;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +51,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        final View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         FloatingActionButton fab = root.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -84,9 +88,9 @@ public class HomeFragment extends Fragment {
         Button onceUponATimeDetailButton = root.findViewById(R.id.detail_once_upon_a_tome_in_hollywood_button);
         Button pulpFictionDetailButton = root.findViewById(R.id.detail_pulp_fiction_button);
 
-        ImageView titanicDetailImageView = root.findViewById(R.id.titanic_image_view);
-        ImageView onceUponATimeDetailImageView = root.findViewById(R.id.once_upon_a_time_in_hollywood_image_view);
-        ImageView pulpFictionDetailImageView = root.findViewById(R.id.pulp_fiction_image_view);
+        final ImageView titanicDetailImageView = root.findViewById(R.id.titanic_image_view);
+        final ImageView onceUponATimeDetailImageView = root.findViewById(R.id.once_upon_a_time_in_hollywood_image_view);
+        final ImageView pulpFictionDetailImageView = root.findViewById(R.id.pulp_fiction_image_view);
 
 
         titanicDetailButton.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +115,8 @@ public class HomeFragment extends Fragment {
         titanicDetailImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickDetail(mTitleTitanicTextView, R.string.titanic_title);
+                titanicDetailImageView.setImageResource(R.drawable.frame_animation);
+                ((AnimationDrawable)titanicDetailImageView.getDrawable()).start();
             }
         });
         onceUponATimeDetailImageView.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +160,14 @@ public class HomeFragment extends Fragment {
             mainLayout.addView(addDescriptionTextView);
         }
         ///////////
+
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        Log.d("start", "start");
+        super.onStart();
     }
 
     @Override
@@ -170,6 +182,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void onClickDetail(TextView title, int getTextTitle) {
+
         titleName = getText(getTextTitle).toString();
         title.setTextColor(getResources().getColor(R.color.colorPrimary));
         Bundle bundle = new Bundle();
@@ -180,7 +193,7 @@ public class HomeFragment extends Fragment {
                 .getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.fragment_open_enter, R.anim.fragment_close_exit)
-                .replace(R.id.nav_host_fragment, detailFrag, "findThisFragment")
+                .replace(R.id.content_main, detailFrag, "findThisFragment")
                 .addToBackStack(null)
                 .commit();
     }
